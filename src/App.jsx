@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import './App.css';
 import api from './services/api';
+import Map from './Map'
 
 function App() {
 
@@ -14,9 +15,8 @@ function App() {
     }
 
     try{
-      const response = await api.get(`${input}/json`)
+      const response = await api.get(`${input}`)
       setCep(response.data)
-      console.log(response.data);
       setInput('')
     }catch{
       alert("Error: Formato de CEP inválido.")
@@ -42,17 +42,20 @@ function App() {
         </button>
       </div>
 
+      <div className="content">
+        {Object.keys(cep).length > 0 && (
+          <main className='main'>
+            <h2>CEP: {cep.cep}</h2>
+            <span>{cep.city}-{cep.state}</span>
+            <span>{cep.neighborhood}</span>
+            <span>{cep.street}</span>
+          </main>
+        )}
 
-      {Object.keys(cep).length > 0 && (
-        <main className='main'>
-          <h2>CEP: {cep.cep}</h2>
-          <span>DDD: {cep.ddd}</span>
-          <span>{cep.localidade}-{cep.uf}</span>
-          <span>{cep.bairro}</span>
-          <span>{cep.logradouro}</span>
-        </main>
-      
-      )}
+        {Object.keys(cep).length > 0 && (
+          <div className='map'><Map/></div>
+        )}
+      </div>    
     </div>
     
   )

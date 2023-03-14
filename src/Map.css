@@ -1,0 +1,9 @@
+.map{
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.obs{
+    background-color: red;
+    font-weight: bold;
+}
