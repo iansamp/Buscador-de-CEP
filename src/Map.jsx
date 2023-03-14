@@ -16,7 +16,6 @@ function map(){
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyBkPgtK79ogEgOtNfzTxWt-MNZI6B1LrjE"
       })
 
 
